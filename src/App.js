@@ -1,6 +1,8 @@
 import { Component } from "react";
 import "./App.css";
 import Feedback from "./components/Feedback";
+import Section from "./components/Section";
+import Statistics from "./components/Statistics";
 
 class App extends Component {
   state = {
@@ -11,7 +13,17 @@ class App extends Component {
 
   render() {
     const options = Object.keys(this.state);
-    return <Feedback options={options} />;
+    return (
+      <div>
+        <Section title="Please leave feedback">
+          <Feedback options={options} />
+        </Section>
+
+        <Section title="Statistics">
+          <Statistics options={options} />
+        </Section>
+      </div>
+    );
   }
 }
 
