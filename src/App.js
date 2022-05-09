@@ -3,6 +3,7 @@ import "./App.css";
 import Feedback from "./components/Feedback";
 import Section from "./components/Section";
 import Statistics from "./components/Statistics";
+import Notification from "./components/Notification";
 
 class App extends Component {
   state = {
@@ -34,16 +35,20 @@ class App extends Component {
           <Feedback options={options} onLeaveFeedback={this.onLeaveFeedback} />
         </Section>
 
-        <Section title="Statistics">
-          <Statistics
-            options={options}
-            good={this.state.good}
-            neutral={this.state.neutral}
-            bad={this.state.bad}
-            total={total}
-            positivePercentage={percentage}
-          />
-        </Section>
+        {total ? (
+          <Section title="Statistics">
+            <Statistics
+              options={options}
+              good={this.state.good}
+              neutral={this.state.neutral}
+              bad={this.state.bad}
+              total={total}
+              positivePercentage={percentage}
+            />
+          </Section>
+        ) : (
+          <Notification message="There is no feedback" />
+        )}
       </div>
     );
   }
